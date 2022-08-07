@@ -1,5 +1,7 @@
 package com.belano.beer;
 
+import java.util.Objects;
+
 public class BeerSongShamelessGreen {
 
     public String singSong() {
@@ -18,21 +20,20 @@ public class BeerSongShamelessGreen {
         var bottleNumber = new BottleNumber(bottles);
         var nextBottleNumber = new BottleNumber(bottleNumber.successor());
         return """
-                %s %s of beer on the wall, %s %s of beer.
-                %s, %s %s of beer on the wall.
+                %s of beer on the wall, %s of beer.
+                %s, %s of beer on the wall.
                                     
-                """.formatted(cap(bottleNumber.quantity()),
-                bottleNumber.container(),
-                bottleNumber.quantity(),
-                bottleNumber.container(),
+                """.formatted(cap(bottleNumber),
+                bottleNumber,
                 bottleNumber.action(),
-                nextBottleNumber.quantity(),
-                nextBottleNumber.container());
+                nextBottleNumber);
     }
 
-    private String cap(String str) {
-        return str.substring(0, 1)
-                .toUpperCase() + str.substring(1);
+    private String cap(Object o) {
+        Objects.requireNonNull(o);
+        String toString = o.toString();
+        return toString.substring(0, 1)
+                .toUpperCase() + toString.substring(1);
     }
 
     private static class BottleNumber {
@@ -84,6 +85,11 @@ public class BeerSongShamelessGreen {
 
         public int getNumber() {
             return number;
+        }
+
+        @Override
+        public String toString() {
+            return quantity() + " " + container();
         }
     }
 
