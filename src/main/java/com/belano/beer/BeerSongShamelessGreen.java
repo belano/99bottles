@@ -15,41 +15,19 @@ public class BeerSongShamelessGreen {
     }
 
     public String verse(int bottles) {
+        var bottleNumber = new BottleNumber(bottles);
+        var nextBottleNumber = new BottleNumber(bottleNumber.successor());
         return """
                 %s %s of beer on the wall, %s %s of beer.
                 %s, %s %s of beer on the wall.
                                     
-                """.formatted(cap(quantity(bottles)),
-                container(bottles),
-                quantity(bottles),
-                container(bottles),
-                action(bottles),
-                quantity(successor(bottles)),
-                container(successor(bottles)));
-    }
-
-    private String container(int number) {
-        if (number == 1) {
-            return "bottle";
-        } else {
-            return "bottles";
-        }
-    }
-
-    private String pronoun(int number) {
-        if (number == 1) {
-            return "it";
-        } else {
-            return "one";
-        }
-    }
-
-    private String quantity(int number) {
-        if (number == 0) {
-            return "no more";
-        } else {
-            return String.valueOf(number);
-        }
+                """.formatted(cap(bottleNumber.quantity()),
+                bottleNumber.container(),
+                bottleNumber.quantity(),
+                bottleNumber.container(),
+                bottleNumber.action(),
+                nextBottleNumber.quantity(),
+                nextBottleNumber.container());
     }
 
     private String cap(String str) {
@@ -57,19 +35,56 @@ public class BeerSongShamelessGreen {
                 .toUpperCase() + str.substring(1);
     }
 
-    private String action(int number) {
-        if (number == 0) {
-            return "Go to the store and buy some more";
-        } else {
-            return "Take %s down and pass it around".formatted(pronoun(number));
+    private static class BottleNumber {
+        private final int number;
+
+        private BottleNumber(int number) {
+            this.number = number;
+        }
+
+        private String container() {
+            if (number == 1) {
+                return "bottle";
+            } else {
+                return "bottles";
+            }
+        }
+
+        private String pronoun() {
+            if (number == 1) {
+                return "it";
+            } else {
+                return "one";
+            }
+        }
+
+        private String quantity() {
+            if (number == 0) {
+                return "no more";
+            } else {
+                return String.valueOf(number);
+            }
+        }
+
+        private String action() {
+            if (number == 0) {
+                return "Go to the store and buy some more";
+            } else {
+                return "Take %s down and pass it around".formatted(pronoun());
+            }
+        }
+
+        private int successor() {
+            if (number == 0) {
+                return 99;
+            } else {
+                return number - 1;
+            }
+        }
+
+        public int getNumber() {
+            return number;
         }
     }
 
-    private int successor(int number) {
-        if (number == 0) {
-            return 99;
-        } else {
-            return number - 1;
-        }
-    }
 }
