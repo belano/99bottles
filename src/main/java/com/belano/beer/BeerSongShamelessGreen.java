@@ -15,28 +15,61 @@ public class BeerSongShamelessGreen {
     }
 
     public String verse(int bottles) {
-        return switch (bottles) {
-            case 0 -> """
-                    No more bottles of beer on the wall, no more bottles of beer.
-                    Go to the store and buy some more, 99 bottles of beer on the wall.
-                                        
-                    """;
-            case 1 -> """
-                    1 bottle of beer on the wall, 1 bottle of beer.
-                    Take it down and pass it around, no more bottles of beer on the wall.
-                                        
-                    """;
-            case 2 -> """
-                    2 bottles of beer on the wall, 2 bottles of beer.
-                    Take one down and pass it around, 1 bottle of beer on the wall.
-                                        
-                    """;
-            default -> """
-                    %d bottles of beer on the wall, %d bottles of beer.
-                    Take one down and pass it around, %d bottles of beer on the wall.
-                                        
-                    """.formatted(bottles, bottles, bottles - 1);
-        };
+        return """
+                %s %s of beer on the wall, %s %s of beer.
+                %s, %s %s of beer on the wall.
+                                    
+                """.formatted(cap(quantity(bottles)),
+                container(bottles),
+                quantity(bottles),
+                container(bottles),
+                action(bottles),
+                quantity(successor(bottles)),
+                container(successor(bottles)));
+    }
 
+    private String container(int number) {
+        if (number == 1) {
+            return "bottle";
+        } else {
+            return "bottles";
+        }
+    }
+
+    private String pronoun(int number) {
+        if (number == 1) {
+            return "it";
+        } else {
+            return "one";
+        }
+    }
+
+    private String quantity(int number) {
+        if (number == 0) {
+            return "no more";
+        } else {
+            return String.valueOf(number);
+        }
+    }
+
+    private String cap(String str) {
+        return str.substring(0, 1)
+                .toUpperCase() + str.substring(1);
+    }
+
+    private String action(int number) {
+        if (number == 0) {
+            return "Go to the store and buy some more";
+        } else {
+            return "Take %s down and pass it around".formatted(pronoun(number));
+        }
+    }
+
+    private int successor(int number) {
+        if (number == 0) {
+            return 99;
+        } else {
+            return number - 1;
+        }
     }
 }
