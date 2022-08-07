@@ -11,6 +11,7 @@ class BottleNumber {
         return switch (number) {
             case 0 -> new BottleNumber0();
             case 1 -> new BottleNumber1();
+            case 6 -> new BottleNumber6();
             default -> new BottleNumber(number);
         };
     }
