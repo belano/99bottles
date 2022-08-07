@@ -30,8 +30,7 @@ public class BeerSongShamelessGreen {
     }
 
     private String cap(Object o) {
-        Objects.requireNonNull(o);
-        String toString = o.toString();
+        String toString = Objects.requireNonNull(o).toString();
         return toString.substring(0, 1)
                 .toUpperCase() + toString.substring(1);
     }
