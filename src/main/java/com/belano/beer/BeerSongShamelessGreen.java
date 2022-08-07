@@ -17,8 +17,8 @@ public class BeerSongShamelessGreen {
     }
 
     public String verse(int bottles) {
-        var bottleNumber = new BottleNumber(bottles);
-        var nextBottleNumber = new BottleNumber(bottleNumber.successor());
+        var bottleNumber = bottleNumberFor(bottles);
+        var nextBottleNumber = bottleNumberFor(bottleNumber.successor());
         return """
                 %s of beer on the wall, %s of beer.
                 %s, %s of beer on the wall.
@@ -36,61 +36,12 @@ public class BeerSongShamelessGreen {
                 .toUpperCase() + toString.substring(1);
     }
 
-    private static class BottleNumber {
-        private final int number;
-
-        private BottleNumber(int number) {
-            this.number = number;
-        }
-
-        private String container() {
-            if (number == 1) {
-                return "bottle";
-            } else {
-                return "bottles";
-            }
-        }
-
-        private String pronoun() {
-            if (number == 1) {
-                return "it";
-            } else {
-                return "one";
-            }
-        }
-
-        private String quantity() {
-            if (number == 0) {
-                return "no more";
-            } else {
-                return String.valueOf(number);
-            }
-        }
-
-        private String action() {
-            if (number == 0) {
-                return "Go to the store and buy some more";
-            } else {
-                return "Take %s down and pass it around".formatted(pronoun());
-            }
-        }
-
-        private int successor() {
-            if (number == 0) {
-                return 99;
-            } else {
-                return number - 1;
-            }
-        }
-
-        public int getNumber() {
-            return number;
-        }
-
-        @Override
-        public String toString() {
-            return quantity() + " " + container();
-        }
+    private BottleNumber bottleNumberFor(int number) {
+        return switch (number) {
+            case 0 -> new BottleNumber0();
+            case 1 -> new BottleNumber1();
+            default -> new BottleNumber(number);
+        };
     }
 
 }
