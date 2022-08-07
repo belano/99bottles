@@ -16,7 +16,7 @@ public class BottleNumber0 extends BottleNumber {
     }
 
     @Override
-    public int successor() {
-        return 99;
+    public BottleNumber successor() {
+        return createFor(99);
     }
 }

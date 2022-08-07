@@ -7,6 +7,14 @@ class BottleNumber {
         this.number = number;
     }
 
+    public static BottleNumber createFor(int number) {
+        return switch (number) {
+            case 0 -> new BottleNumber0();
+            case 1 -> new BottleNumber1();
+            default -> new BottleNumber(number);
+        };
+    }
+
     public String container() {
         return "bottles";
     }
@@ -23,8 +31,8 @@ class BottleNumber {
         return "Take %s down and pass it around".formatted(pronoun());
     }
 
-    public int successor() {
-        return number - 1;
+    public BottleNumber successor() {
+        return createFor(number - 1);
     }
 
     public int getNumber() {

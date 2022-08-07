@@ -17,8 +17,7 @@ public class BeerSongShamelessGreen {
     }
 
     public String verse(int bottles) {
-        var bottleNumber = bottleNumberFor(bottles);
-        var nextBottleNumber = bottleNumberFor(bottleNumber.successor());
+        var bottleNumber = BottleNumber.createFor(bottles);
         return """
                 %s of beer on the wall, %s of beer.
                 %s, %s of beer on the wall.
@@ -26,21 +25,13 @@ public class BeerSongShamelessGreen {
                 """.formatted(cap(bottleNumber),
                 bottleNumber,
                 bottleNumber.action(),
-                nextBottleNumber);
+                bottleNumber.successor());
     }
 
     private String cap(Object o) {
         String toString = Objects.requireNonNull(o).toString();
         return toString.substring(0, 1)
                 .toUpperCase() + toString.substring(1);
-    }
-
-    private BottleNumber bottleNumberFor(int number) {
-        return switch (number) {
-            case 0 -> new BottleNumber0();
-            case 1 -> new BottleNumber1();
-            default -> new BottleNumber(number);
-        };
     }
 
 }
