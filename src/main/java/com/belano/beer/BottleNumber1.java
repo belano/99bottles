@@ -1,7 +1,7 @@
 package com.belano.beer;
 
 public class BottleNumber1 extends BottleNumber {
-    BottleNumber1() {
+    public BottleNumber1() {
         super(1);
     }
 
@@ -13,5 +13,9 @@ public class BottleNumber1 extends BottleNumber {
     @Override
     public String pronoun() {
         return "it";
+    }
+
+    public boolean handles(int number) {
+        return number == 1;
     }
 }

@@ -1,6 +1,6 @@
 package com.belano.beer;
 
-class BottleNumber {
+class BottleNumber implements BottleNumberHandler {
     private final int number;
 
     BottleNumber(int number) {
@@ -8,12 +8,7 @@ class BottleNumber {
     }
 
     public static BottleNumber createFor(int number) {
-        return switch (number) {
-            case 0 -> new BottleNumber0();
-            case 1 -> new BottleNumber1();
-            case 6 -> new BottleNumber6();
-            default -> new BottleNumber(number);
-        };
+        return BottleNumberFactory.createFor(number);
     }
 
     public String container() {
@@ -43,5 +38,10 @@ class BottleNumber {
     @Override
     public String toString() {
         return quantity() + " " + container();
+    }
+
+    @Override
+    public boolean handles(int number) {
+        return true;
     }
 }

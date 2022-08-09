@@ -1,7 +1,7 @@
 package com.belano.beer;
 
 public class BottleNumber6 extends BottleNumber {
-    BottleNumber6() {
+    public BottleNumber6() {
         super(6);
     }
 
@@ -13,5 +13,9 @@ public class BottleNumber6 extends BottleNumber {
     @Override
     public String quantity() {
         return "1";
+    }
+
+    public boolean handles(int number) {
+        return number == 6;
     }
 }

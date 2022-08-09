@@ -1,7 +1,7 @@
 package com.belano.beer;
 
 public class BottleNumber0 extends BottleNumber {
-    BottleNumber0() {
+    public BottleNumber0() {
         super(0);
     }
 
@@ -18,5 +18,9 @@ public class BottleNumber0 extends BottleNumber {
     @Override
     public BottleNumber successor() {
         return createFor(99);
+    }
+
+    public boolean handles(int number) {
+        return number == 0;
     }
 }
