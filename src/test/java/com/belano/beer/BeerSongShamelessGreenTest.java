@@ -8,53 +8,6 @@ class BeerSongShamelessGreenTest {
     private final BeerSongShamelessGreen beerSong = new BeerSongShamelessGreen(BottleVerse::new);
 
     @Test
-    void singFirstVerse() {
-        Assertions.assertEquals("""
-                99 bottles of beer on the wall, 99 bottles of beer.
-                Take one down and pass it around, 98 bottles of beer on the wall.
-
-                """, beerSong.verse(99));
-    }
-
-    @Test
-    void singLastGenericVerse() {
-        Assertions.assertEquals("""
-                3 bottles of beer on the wall, 3 bottles of beer.
-                Take one down and pass it around, 2 bottles of beer on the wall.
-
-                """, beerSong.verse(3));
-    }
-
-    @Test
-    void verseWithTwoBottles() {
-        Assertions.assertEquals("""
-                2 bottles of beer on the wall, 2 bottles of beer.
-                Take one down and pass it around, 1 bottle of beer on the wall.
-
-                """, beerSong.verse(2));
-    }
-
-
-    @Test
-    void verseWithOneBottle() {
-        Assertions.assertEquals("""
-                1 bottle of beer on the wall, 1 bottle of beer.
-                Take it down and pass it around, no more bottles of beer on the wall.
-
-                """, beerSong.verse(1));
-    }
-
-    @Test
-    void verseWithZeroBottles() {
-        Assertions.assertEquals("""
-                No more bottles of beer on the wall, no more bottles of beer.
-                Go to the store and buy some more, 99 bottles of beer on the wall.
-
-                """, beerSong.verse(0));
-    }
-
-
-    @Test
     void singFirstTwoVerses() {
         Assertions.assertEquals("""
                 99 bottles of beer on the wall, 99 bottles of beer.
