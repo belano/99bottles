@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class BeerSongShamelessGreenTest {
 
-    private final BeerSongShamelessGreen beerSong = new BeerSongShamelessGreen();
+    private final BeerSongShamelessGreen beerSong = new BeerSongShamelessGreen(BottleVerse::new);
 
     @Test
     void singFirstVerse() {

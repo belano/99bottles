@@ -1,8 +1,12 @@
 package com.belano.beer;
 
-import java.util.Objects;
-
 public class BeerSongShamelessGreen {
+
+    private final VerseTemplateSupplier verseTemplate;
+
+    public BeerSongShamelessGreen(VerseTemplateSupplier verseTemplate) {
+        this.verseTemplate = verseTemplate;
+    }
 
     public String singSong() {
         return verses(99, 0);
@@ -17,21 +21,7 @@ public class BeerSongShamelessGreen {
     }
 
     public String verse(int bottles) {
-        var bottleNumber = BottleNumber.createFor(bottles);
-        return """
-                %s of beer on the wall, %s of beer.
-                %s, %s of beer on the wall.
-                                    
-                """.formatted(cap(bottleNumber),
-                bottleNumber,
-                bottleNumber.action(),
-                bottleNumber.successor());
-    }
-
-    private String cap(Object o) {
-        String toString = Objects.requireNonNull(o).toString();
-        return toString.substring(0, 1)
-                .toUpperCase() + toString.substring(1);
+        return verseTemplate.get(bottles).lyrics();
     }
 
 }
