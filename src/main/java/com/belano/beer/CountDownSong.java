@@ -1,15 +1,23 @@
 package com.belano.beer;
 
-public class BeerSongShamelessGreen {
+public class CountDownSong {
 
     private final VerseTemplateSupplier verseTemplate;
+    private final int max;
+    private final int min;
 
-    public BeerSongShamelessGreen(VerseTemplateSupplier verseTemplate) {
+    public CountDownSong(VerseTemplateSupplier verseTemplate, int max, int min) {
         this.verseTemplate = verseTemplate;
+        this.max = max;
+        this.min = min;
+    }
+
+    public CountDownSong(VerseTemplateSupplier verseTemplate) {
+        this(verseTemplate, 999999, 0);
     }
 
     public String singSong() {
-        return verses(99, 0);
+        return verses(max, min);
     }
 
     public String verses(int upper, int lower) {
