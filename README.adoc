@@ -1,0 +1,3 @@
+= 99 Bottles of OOP - Java version
+
+https://sandimetz.com/99bottles[99 Bottles of OOP] is a practical guide to writing cost-effective, maintainable, and pleasing object-oriented code. Coding along the lines of the book's example using Java as a language of choice.
